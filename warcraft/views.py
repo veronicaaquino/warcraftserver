@@ -3,8 +3,7 @@ from django.template import RequestContext, loader, Context
 from django.shortcuts import render, render_to_response, redirect
 from django.contrib import auth
 from django.core.context_processors import csrf
-from django.contrib.auth.forms import UserCreationForm, PasswordResetForm
-from .forms import UserForm, UserProfileForm, EditUserForm
+from .forms import UserForm, UserProfileForm, EditUserForm, ChangePasswordForm
 from .models import UserProfile
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.contrib.auth.decorators import login_required
@@ -100,7 +99,6 @@ def edit_success (request):
     request.user.first_name = request.POST.get("first_name", "")
     request.user.last_name = request.POST.get("last_name", "")
     request.user.email = request.POST.get("email", "")
-    request.user.set_password(request.POST.get("password", ""))
     request.user.save()
     if 'picture' in request.FILES:
       profile.picture = request.FILES['picture']
@@ -111,6 +109,29 @@ def edit_success (request):
     email = request.user.email
     picture = profile.picture
     return render(request, 'warcraft/edit_success.html', {'first_name': first_name, 'last_name': last_name, 'email': email, 'picture': picture})
+  
+@login_required    
+def change_password(request):
+    if request.method == "POST":
+        change_password_form = ChangePasswordForm(data=request.POST, instance=request.user)
+        
+        if change_password_form.is_valid():
+            user = change_password_form.save()
+            user.set_password(user.password)
+            user.save()
+        else:
+            print(change_password_form.errors)
+    else:
+        change_password_form = ChangePasswordForm(instance=request.user)
+
+    return render(request, 'warcraft/change_password.html', {'change_password_form': change_password_form})
+
+@login_required
+def change_password_success (request):
+    request.user.set_password(request.POST.get("password", ""))
+    request.user.save()
+    return render(request, 'warcraft/change_password_success.html')
+    
   
 def register_user(request):
     context = RequestContext(request)

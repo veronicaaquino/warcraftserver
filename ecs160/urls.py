@@ -36,6 +36,8 @@ urlpatterns = [
     url(r'^accounts/internalLogin/$', 'warcraft.views.internalLogin'),
     url(r'^accounts/edit/$', 'warcraft.views.edit_userProfile'),
     url(r'^accounts/edit_success', 'warcraft.views.edit_success'),
+    url(r'^accounts/change_password/$', 'warcraft.views.change_password'),
+    url(r'^accounts/change_password_success', 'warcraft.views.change_password_success'),
     url(r'^accounts/recover_password/', 'warcraft.views.recover_password'),
     url(r'^accounts/recovery_email_sent/','warcraft.views.edit_success'),
     
