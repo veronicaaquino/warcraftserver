@@ -4,11 +4,9 @@
 
     <h2>Register</h2>
     
-    <form enctype="multipart/form-data" action="/accounts/register/" method="POST">
-        {% csrf_token %}
-       
-        {{ user_form.as_p }}
-        {{ profile_form.as_p }}
+    <form enctype="multipart/form-data" action="/accounts/register/" method="post">
+        {% csrf_token %}  
+        {{ form.as_p }}
         
         <input type = "submit" value="Register" />
         

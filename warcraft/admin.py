@@ -1,5 +1,6 @@
 from django.contrib import admin
-from warcraft.models import UserProfile
 
 # Register your models here.
-admin.site.register(UserProfile)
+from warcraft.models import User
+
+admin.site.register(User)

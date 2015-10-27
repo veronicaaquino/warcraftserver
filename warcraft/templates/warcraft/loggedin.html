@@ -5,10 +5,13 @@
 
 	<h2> Hi {{full_name}} Logged in! </h2>
 	
-	<img src = "{{ MEDIA_URL }}{{ picture }}" alt = "Picture">
+	<img src = "{{ MEDIA_URL }}{{ avatar }}" alt = "Avatar">
 	
-	<p> Click <a href="/accounts/edit/"> here </a> to edit profile. </p>
-	<p> Click <a href="/accounts/change_password/"> here </a> to edit password. </p>
+	{% if user.is_authenticated %}
+	    <p> Click <a href="/accounts/edit/"> here </a> to edit profile. </p>
+	    <p> Click <a href="/accounts/change_password/"> here </a> to edit password. </p>
+	{% endif %}
+	
 	<br>
 	<p> Click <a href="/accounts/logout/"> here </a> to logout. </p>
 
