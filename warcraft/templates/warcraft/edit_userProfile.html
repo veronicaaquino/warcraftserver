@@ -1,0 +1,15 @@
+{% extends "warcraft/base.html" %}
+
+{% block content %}
+
+    <h2>Edit Profile</h2>
+    
+    <form enctype="multipart/form-data" action="/accounts/edit_success" method="POST">
+      {% csrf_token %}
+      {{ edit_user_form.as_p }}
+      {{ edit_profile_form.as_p }}
+      <br>
+      <input type="SUBMIT" value="Update"/>
+    </form>
+
+{% endblock %}

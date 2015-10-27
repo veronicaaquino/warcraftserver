@@ -1,0 +1,15 @@
+{%extends "warcraft/base.html"%}
+
+{%block content%}
+
+    <h2>Profile successfully edited!</h2>
+    <br>
+    <p> First name: {{first_name}} </p>
+    <p> Last name: {{last_name}} </p>
+    <p> email: {{email}} </p>
+    <p> Picture: </p>
+    <ul><img src = "{{ MEDIA_URL }}{{ picture }}" alt = "Picture"> </ul>
+    <br>
+    <p>Click <a href="/accounts/loggedin/">here</a> to go back home</p>
+    
+{% endblock %}
