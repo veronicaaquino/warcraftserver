@@ -1,15 +1,66 @@
-{% extends "warcraft/base.html" %}
+<!-- register.html -->
+{% load staticfiles %}
+{% load widget_tweaks %}
 
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
 
-    <h2>Register</h2>
+
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'warcraft/register_style.css' %}" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>        
+        <title>ChrisCraft Registration</title>
+    </head>
+
+    <body>
     
-    <form enctype="multipart/form-data" action="/accounts/register/" method="post">
-        {% csrf_token %}  
-        {{ form.as_p }}
+    {% block content %}
         
-        <input type = "submit" value="Register" />
+    
+       <h1 class="register-title">Register for ChrisCraft</h1>
+        <!--<div class="register">-->
         
-    </form>
+        <form class = "register" enctype="multipart/form-data" action="/accounts/register/" method="post">
+            
+            <h3> Please enter your information below: </h3>
+            
+            {% csrf_token %}  
+            {{ form.as_p }}
+            <!--
+            <input type='hidden' name='csrfmiddlewaretoken' value='cbTTmrRCS2QlYIpoFpsjm6B1oZU9gbJn' />  
+            
+            <p><label for="id_firstName">First Name: </label> 
+            <input class="register-input" placeholder = " First Name" id="id_firstName" name="firstName" type="text" /></p>
+            
+            <p><label for="id_lastName">Last Name:</label> 
+            <input class="register-input" placeholder = " Last Name" id="id_lastName" name="lastName" type="text" /></p>
+            
+            <p><label for="id_userName">Username:</label> 
+            <input class="register-input" placeholder = " Username" id="id_userName" name="userName" type="text" /></p>
+            
+            <p><label for="id_email">Email:</label> 
+            <input class="register-input" placeholder = " E-mail Address" id="id_email" name="email" type="text" /></p>
+            
+            <p><label for="id_password1">Password:</label> 
+            <input class="register-input" placeholder = " Password" id="id_password1" name="password1" type="password" /></p>
+            
+            <p><label for="id_password2">Password (again):</label> 
+            <input class="register-input" placeholder = " Re-type Password" id="id_password2" name="password2" type="password" /></p>
+            
+            <p><label for="id_picture">Picture:</label> 
+            <input class="register-input" id="id_picture" name="picture" type="file" /></p>
+            -->
+            <input type = "submit" class="register-button" value="Register" />
+        
+        </form>
+        
+        
+    
+    {% endblock %}
 
-{% endblock %}
+        <div style="color:#FFFFFF" id="signature"> 
+                <p>#PotatoMafia Productions</p> 
+        </div>
+
+    </body>
+</html>

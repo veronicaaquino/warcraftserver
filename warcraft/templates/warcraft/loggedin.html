@@ -7,12 +7,15 @@
 	
 	<img src = "{{ MEDIA_URL }}{{ avatar }}" alt = "Avatar">
 	
-	{% if user.is_authenticated %}
-	    <p> Click <a href="/accounts/edit/"> here </a> to edit profile. </p>
-	    <p> Click <a href="/accounts/change_password/"> here </a> to edit password. </p>
-	{% endif %}
+  <table style="width:100%"><tr><td>ranking</td><td>Wins</td><td>Losses</td><td>Rating</td></tr>
+	    <tr><td>{{ranking}}</td><td>{{wins}}</td><td>{{losses}}</td><td>{{rating}}</td></tr>
+	</table>
+
+  {% if user.is_authenticated %}
+      <p> Click <a href="/accounts/edit/"> here </a> to edit profile. </p>
+      <p> Click <a href="/accounts/change_password/"> here </a> to edit password. </p>
+  {% endif %}
 	
-	<br>
 	<p> Click <a href="/accounts/logout/"> here </a> to logout. </p>
 
 {% endblock %}

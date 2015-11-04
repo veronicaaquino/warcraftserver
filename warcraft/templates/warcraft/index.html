@@ -1,317 +1,75 @@
 {% load staticfiles %}
+
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Home</title>
-
-
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-		
-<link rel="stylesheet" type="text/css" href="http://cdn2.editmysite.com/css/sites.css?buildTime=1234" />
-<link rel="stylesheet" type="text/css" href="http://cdn1.editmysite.com/editor/libraries/fancybox/fancybox.css?1234" />
-<link rel="stylesheet" type="text/css" href="http://cdn2.editmysite.com/css/social-icons.css?buildtime=1234" media="screen,projection" />
-<link rel="stylesheet" type="text/css" href="{% static 'warcraft/main_style.css' %}?1445309725" title="wsite-theme-css" />
-<link href='http://fonts.googleapis.com/css?family=Lato:400,300,300italic,700,400italic,700italic&subset=latin,latin-ext' rel='stylesheet' type='text/css' />
-<link href='http://fonts.googleapis.com/css?family=Fjalla+One&subset=latin,latin-ext' rel='stylesheet' type='text/css' />
-
-<style type='text/css'>
-.wsite-elements.wsite-not-footer div.paragraph, .wsite-elements.wsite-not-footer p, .wsite-elements.wsite-not-footer .product-block .product-title, .wsite-elements.wsite-not-footer .product-description, .wsite-elements.wsite-not-footer .wsite-form-field label, .wsite-elements.wsite-not-footer .wsite-form-field label, #wsite-content div.paragraph, #wsite-content p, #wsite-content .product-block .product-title, #wsite-content .product-description, #wsite-content .wsite-form-field label, #wsite-content .wsite-form-field label, .blog-sidebar div.paragraph, .blog-sidebar p, .blog-sidebar .wsite-form-field label, .blog-sidebar .wsite-form-field label {}
-#wsite-content div.paragraph, #wsite-content p, #wsite-content .product-block .product-title, #wsite-content .product-description, #wsite-content .wsite-form-field label, #wsite-content .wsite-form-field label, .blog-sidebar div.paragraph, .blog-sidebar p, .blog-sidebar .wsite-form-field label, .blog-sidebar .wsite-form-field label {}
-.wsite-elements.wsite-footer div.paragraph, .wsite-elements.wsite-footer p, .wsite-elements.wsite-footer .product-block .product-title, .wsite-elements.wsite-footer .product-description, .wsite-elements.wsite-footer .wsite-form-field label, .wsite-elements.wsite-footer .wsite-form-field label{}
-.wsite-elements.wsite-not-footer h2, .wsite-elements.wsite-not-footer .product-long .product-title, .wsite-elements.wsite-not-footer .product-large .product-title, .wsite-elements.wsite-not-footer .product-small .product-title, #wsite-content h2, #wsite-content .product-long .product-title, #wsite-content .product-large .product-title, #wsite-content .product-small .product-title, .blog-sidebar h2 {}
-#wsite-content h2, #wsite-content .product-long .product-title, #wsite-content .product-large .product-title, #wsite-content .product-small .product-title, .blog-sidebar h2 {}
-.wsite-elements.wsite-footer h2, .wsite-elements.wsite-footer .product-long .product-title, .wsite-elements.wsite-footer .product-large .product-title, .wsite-elements.wsite-footer .product-small .product-title{}
-#wsite-title {}
-.wsite-menu-default a {}
-.wsite-menu a {}
-.wsite-image div, .wsite-caption {}
-.galleryCaptionInnerText {}
-.fancybox-title {}
-.wslide-caption-text {}
-.wsite-phone {}
-.wsite-headline {}
-.wsite-headline-paragraph {}
-.wsite-button-inner {}
-.wsite-not-footer blockquote {}
-.wsite-footer blockquote {}
-.blog-header h2 a {}
-#wsite-content h2.wsite-product-title {}
-.wsite-product .wsite-product-price a {}
-</style>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="{% static 'warcraft/index.css' %}">
 <style>
-.wsite-background {background-image: url("{% static 'warcraft/images/Splash.png' %}") !important;background-repeat: no-repeat !important;background-position: 50.00% 0.00% !important;background-size: 100% !important;background-color: transparent !important;}
-body.wsite-background {background-attachment: fixed !important;}.wsite-background.wsite-custom-background{ background-size: cover !important}
+a:link {
+    text-decoration: none;
+    color:white;
+}
+
+a:visited {
+    text-decoration: none;
+    color:white;
+}
+
+a:hover {
+    text-decoration: underline;
+    color:white;
+}
+
+a:active {
+    text-decoration: underline;
+    color:white;
+}
 </style>
-		<script><!--
-var STATIC_BASE = '//cdn1.editmysite.com/';
-var STYLE_PREFIX = 'wsite';
-//-->
-</script>
-<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js'></script>
+</head>
+<body>
 
-<script src="http://cdn2.editmysite.com/js/site/main.js?buildTime=1234"></script><script type="text/javascript">_W.configDomain = "www.weebly.com";</script><script type="text/javascript" src="http://cdn2.editmysite.com/js/lang/en/ftl.js?buildTime=1234"></script><script>_W.relinquish && _W.relinquish()</script>
-<script type="text/javascript"><!--
-	var IS_ARCHIVE = 1;
-	{% verbatim %}
-	(function(jQuery){
-		function initFlyouts(){
-			initPublishedFlyoutMenus(
-				[{"id":"352649318417170554","title":"Home","url":"index.html","target":""},{"id":"169959061324681955","title":"Forum","url":"forum.html","target":""},{"id":"311654557362064461","title":"members","url":"members.html","target":""},{"id":"348266012323295779","title":"Game Statictics","url":"game-statictics.html","target":""},{"id":"809419866926902202","title":"About","url":"about.html","target":""},{"id":"169243875796347690","title":"Live Stream","url":"live-stream.html","target":""},{"id":"539174877610540311","title":"Settings","url":"settings.html","target":""},{"id":"102802495675994246","title":"Contact us","url":"contact-us.html","target":""}],
-				"352649318417170554",
-				'',
-				'active',
-				false,
-				{"navigation\/item":"<li {{#id}}id=\"{{id}}\"{{\/id}}\n\tclass=\"wsite-menu-item-wrap\"\n\t>\n\t<a href=\"{{url}}\"\n\t\t{{#target}}target=\"{{target}}\"{{\/target}}\n\t\tclass=\"wsite-menu-item\"\n\t\t{{#membership_required}}\n\t\t\tdata-membership-required=\"{{.}}\"\n\t\t{{\/membership_required}}\n\t\t>\n\t\t{{{title_html}}}\n\t<\/a>\n\t{{#has_children}}{{> navigation\/flyout\/list}}{{\/has_children}}\n<\/li>\n","navigation\/flyout\/list":"<div class=\"wsite-menu-wrap\" style=\"display:none\">\n\t<ul class=\"wsite-menu\">\n\t\t{{#children}}{{> navigation\/flyout\/item}}{{\/children}}\n\t<\/ul>\n<\/div>\n","navigation\/flyout\/item":"<li {{#id}}id=\"{{id}}\"{{\/id}}\n\tclass=\"wsite-menu-subitem-wrap {{#is_current}}wsite-nav-current{{\/is_current}}\"\n\t>\n\t<a href=\"{{url}}\"\n\t\t{{#target}}target=\"{{target}}\"{{\/target}}\n\t\tclass=\"wsite-menu-subitem\"\n\t\t>\n\t\t<span class=\"wsite-menu-title\">\n\t\t\t{{{title_html}}}\n\t\t<\/span>{{#has_children}}<span class=\"wsite-menu-arrow\">&gt;<\/span>{{\/has_children}}\n\t<\/a>\n\t{{#has_children}}{{> navigation\/flyout\/list}}{{\/has_children}}\n<\/li>\n"},
-				{}
-			)
-		}
-		if (jQuery) {
-			jQuery(document).ready(function() { jQuery(initFlyouts); });
-		}else{
-			if (Prototype.Browser.IE) window.onload = initFlyouts;
-			else document.observe('dom:loaded', initFlyouts);
-		}
-	})(window._W && _W.jQuery)
-	{% endverbatim %}
-//-->
-</script>
-		
-	</head>
-	<body class="landing-page  wsite-page-index wsite-theme-light"><input type="checkbox" id="navTrigger" />
-
-	<div class="wrapper">
-	  <div class="paris-header">
-      <div class="container">
-      	<label for="navTrigger" class="nav-trigger hamburger"><span></span></label>
-      	<div class="logo"><span class="wsite-logo">
-
-	<a href="">
-	
-	<span id="wsite-title">&nbsp;</span>
-	
-	</a>
-
-</span></div>
-        <div class="nav desktop-nav"><ul class="wsite-menu-default">
-		<li id="active"
-			class="wsite-menu-item-wrap"
-			>
-			<a href="index.html"
-				
-				class="wsite-menu-item"
-				>
-				Home
-			</a>
-			
-		</li>
-		<li id="pg169959061324681955"
-			class="wsite-menu-item-wrap"
-			>
-			<a href="forum.html"
-				
-				class="wsite-menu-item"
-				>
-				Forum
-			</a>
-			
-		</li>
-		<li id="pg311654557362064461"
-			class="wsite-menu-item-wrap"
-			>
-			<a href="members.html"
-				
-				class="wsite-menu-item"
-				>
-				members
-			</a>
-			
-		</li>
-		<li id="pg348266012323295779"
-			class="wsite-menu-item-wrap"
-			>
-			<a href="game-statictics.html"
-				
-				class="wsite-menu-item"
-				>
-				Game Statictics
-			</a>
-			
-		</li>
-		<li id="pg809419866926902202"
-			class="wsite-menu-item-wrap"
-			>
-			<a href="about.html"
-				
-				class="wsite-menu-item"
-				>
-				About
-			</a>
-			
-		</li>
-		<li id="pg169243875796347690"
-			class="wsite-menu-item-wrap"
-			>
-			<a href="live-stream.html"
-				
-				class="wsite-menu-item"
-				>
-				Live Stream
-			</a>
-			
-		</li>
-		<li id="pg539174877610540311"
-			class="wsite-menu-item-wrap"
-			>
-			<a href="settings.html"
-				
-				class="wsite-menu-item"
-				>
-				Settings
-			</a>
-			
-		</li>
-		<li id="pg102802495675994246"
-			class="wsite-menu-item-wrap"
-			>
-			<a href="contact-us.html"
-				
-				class="wsite-menu-item"
-				>
-				Contact us
-			</a>
-			
-		</li>
-</ul>
+<div class="header">
+<h1>CHRISCRAFT: TIDES OF NITTA</h1>
+<p class = "butn1"><a href = "/accounts/login">Log In</a></p>
+<p class = "butn2"><a href = "/accounts/register">Register</a></p>
 </div>
-      </div><!-- end .container -->
-	  </div><!-- end .header -->  
-	        
-		<div class="banner-wrap wsite-background wsite-custom-background">
-			<div class="container">
-				<div class="banner">
-					<h2><span class="wsite-text wsite-headline">
-	ChrisCraft:<br />​Tides of Nitta
-</span></h2>
-					<p></p>	
-					<div class="button-wrap"></div>
-					<span id="contentArrow"><span></span></span>
-				</div>
-			</div>
-		</div>
 
-		<div class="main-wrap">
-	    <div class="container">
-	 			<div class="content-wrap"><div id='wsite-content' class='wsite-elements wsite-not-footer'>
-</div>
-</div>
-	  	</div><!-- end container -->
-	  </div>
-
-    <div class="footer-wrap">
-    	<div class="container">
-    		<div class="footer">Create a <a target="_top" href="http://www.weebly.com/">free web site</a> with <a target="_top" href="http://www.weebly.com/" title="free web site">Weebly</a></div>
-    	</div><!-- end container -->
-    </div><!-- end footer-wrap -->
-	</div>
-
-	<div class="nav mobile-nav"><ul class="wsite-menu-default">
-		<li id="active"
-			class="wsite-menu-item-wrap"
-			>
-			<a href="index.html"
-				
-				class="wsite-menu-item"
-				>
-				Home
-			</a>
-			
-		</li>
-		<li id="pg169959061324681955"
-			class="wsite-menu-item-wrap"
-			>
-			<a href="forum.html"
-				
-				class="wsite-menu-item"
-				>
-				Forum
-			</a>
-			
-		</li>
-		<li id="pg311654557362064461"
-			class="wsite-menu-item-wrap"
-			>
-			<a href="members.html"
-				
-				class="wsite-menu-item"
-				>
-				members
-			</a>
-			
-		</li>
-		<li id="pg348266012323295779"
-			class="wsite-menu-item-wrap"
-			>
-			<a href="game-statictics.html"
-				
-				class="wsite-menu-item"
-				>
-				Game Statictics
-			</a>
-			
-		</li>
-		<li id="pg809419866926902202"
-			class="wsite-menu-item-wrap"
-			>
-			<a href="about.html"
-				
-				class="wsite-menu-item"
-				>
-				About
-			</a>
-			
-		</li>
-		<li id="pg169243875796347690"
-			class="wsite-menu-item-wrap"
-			>
-			<a href="live-stream.html"
-				
-				class="wsite-menu-item"
-				>
-				Live Stream
-			</a>
-			
-		</li>
-		<li id="pg539174877610540311"
-			class="wsite-menu-item-wrap"
-			>
-			<a href="settings.html"
-				
-				class="wsite-menu-item"
-				>
-				Settings
-			</a>
-			
-		</li>
-		<li id="pg102802495675994246"
-			class="wsite-menu-item-wrap"
-			>
-			<a href="contact-us.html"
-				
-				class="wsite-menu-item"
-				>
-				Contact us
-			</a>
-			
-		</li>
+<div class="row">
+<div class="col-3 col-s-3 menu">
+<ul>
+<li><a href="/downloads">Download</a></li>
+<li>Forums</li>
+<li>Contact</li>
+<li>About</li>
+<li>Game Statistics</li>
+<li>Live Stream</li>
 </ul>
 </div>
 
-	<script type="text/javascript" src="{% static 'warcraft/plugins.js' %}"></script>
-	<script type="text/javascript" src="{% static 'warcraft/custom.js' %}"></script>
+<div class="col-6 col-s-9">
+<h1>The Game</h1>
+<p> Chriscraft: Tides of Nitta is a clone of 1995 DOS RTS game Warcraft II.  </p>
+ <img src="{%static 'warcraft/images/Splash.png' %}" width="500" height="300">
+</div>
 
-		
-		
-	</body>
+<div class="col-3 col-s-12">
+<div class="aside">
+<h2>What?</h2>
+<p>Chriscraft is a fantasy-themed real-time strategy game.</p>
+<h2>Who?</h2>
+<p>Engineering students at UC Davis have created a clone of Warcraft II.</p>
+<h2>How?</h2>
+<p>Multiple teams are working on various platforms.</p>
+</div>
+</div>
+
+</div>
+
+<div class="footer">
+<p>This website allows users to sign up for free and unleash amazing things such as forums and much more.</p>
+</div>
+ 
+
+</body>
 </html>

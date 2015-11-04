@@ -47,7 +47,7 @@ class EditProfileForm(forms.ModelForm):
         
         class Meta:
                 model = User
-                fields = ['firstName', 'lastName', 'email', 'picture'] 
+                fields = ['firstName', 'lastName', 'email', 'picture', 'emailEvery'] 
         
 class ChangePasswordForm(forms.ModelForm):
         password1 = forms.CharField(widget=forms.PasswordInput,

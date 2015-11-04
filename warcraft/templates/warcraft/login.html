@@ -1,17 +1,66 @@
-{%extends "warcraft/base.html"%}
+<!-- login.html -->
+{% load staticfiles %}
 
-{%block content%}
+<!DOCTYPE html>
+<html lang="en">
 
-    <h2>Login</h2>
+
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'warcraft/login_style.css' %}" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>        
+        <title>ChrisCraft Login</title>
+    </head>
+ 
+    <body>
+
+    {%block content%}
     
-    <form enctype="multipart/form-data" action="/accounts/login/" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
+        {%if form.errors %}
+            <p class = 'error'> Sorry invalid username or password</p>
+        {% endif %}
+
+        <section class="container">
+            <div class="login">
+            
+            <h1>Login to ChrisCraft: Tides of Nitta</h1>
         
-        <input type = "submit" value="Login" />
-        
-    </form>
+            <!--    <form action="/accounts/login/" method='post'> {% csrf_token %}
+                    <p><label id="username" for="username">Username: </label>
+                    <input type="text" name ="username" value="" placeholder="Username" id="username"></p>
+                    <p><label id="username" for="password">Password: </label>
+                    <input type="password" name ="password" value="" placeholder="Password" id="password"></p>
+                    <p><input type="submit" name="commit" value="Login"></p>
+                   
+                </form>-->
+            <form action="/accounts/login/" method='post'>                
+               {% csrf_token %}
+               {{ form.as_p }}
+                <p><input type="submit" name="commit" value="Login"></p>
+            </form>
+            </div>
+            
+            
+            <div class="login-help">
+                <p>Forgot your password? <a href="/accounts/password_reset">Click here to reset it</a>.</p>
+            </div>
+            
+            <div class="login-help">
+                <p>Don't have an account? <a href="/accounts/register">Click here to Register</a>.</p>
+            </div>
+            
+            
+        </section>
+
+    {% endblock %}
     
-    <a href="/accounts/password_reset/"> Forgot Password? </a>
+
+        <div style="color:#FFFFFF" id="signature"> 
+            <p>#PotatoMafia Productions</p> 
+        </div>
+
+    </body>
+
+</html>    
     
-{% endblock %}
+  
+    

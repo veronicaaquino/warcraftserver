@@ -4,6 +4,13 @@ h1{
     color: #FFFFFF;
 }
 
+#Login{
+    margin-top: 0px;
+    text-align: right;
+    top:0;
+}
+
+
 body{
     background-color: #000000;
     background-image: url("images/Splash.png");
@@ -18,4 +25,5 @@ body{
     text-align: right;
     position: absolute;
 }
+
 

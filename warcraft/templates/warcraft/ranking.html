@@ -1,0 +1,34 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+
+<table style="width:100%">
+<link rel="stylesheet" href="{% static 'warcraft/ranking.css' %}">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<thead>
+<tr>
+    <th>Ranking</th>
+    <th>Player</th>
+    <th>Wins</th>
+    <th>Losses</th>
+    <th>Rating</th>
+    
+</tr>
+</thead>
+
+<tbody>
+{% for player in players %}
+<tr>
+    <td>{{player.get_ranking}}</td>
+    <td>{{player}}</td>
+    <td>{{player.get_wins}}</td>
+    <td>{{player.get_losses}}</td>
+    <td>{{player.get_rating}}</td>
+    
+</tr>
+{% endfor %}
+
+</tbody>
+</table>
+</html>

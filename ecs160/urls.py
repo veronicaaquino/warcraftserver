@@ -18,14 +18,16 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
-from django.contrib.auth import views as auth_views
+import notifications
 
 urlpatterns = [
     url(r'^warcraft/', include('warcraft.urls', namespace="warcraft")),
     url(r'^/$', include('warcraft.urls', namespace="warcraft")),
     url(r'', include('warcraft.urls', namespace="warcraft")),
-    url(r'^', include('django.contrib.auth.urls')),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^messages/', include('django_messages.urls')),
+    #url('^inbox/notifications/', include('notifications.urls')),
+    #url(r'^notifications/', include('pinax.notifications.urls')),
     url(r'^accounts/login/$', 'warcraft.views.login'),
     url(r'^accounts/logout/$', 'warcraft.views.logout'),
     url(r'^accounts/loggedin/$', 'warcraft.views.loggedin'),
@@ -40,10 +42,11 @@ urlpatterns = [
     url(r'^accounts/password_reset_done/$', 'django.contrib.auth.views.password_reset_done', name='password_reset_done'),
     url(r'^accounts/password_reset_confirm/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$', 'django.contrib.auth.views.password_reset_confirm', name='password_reset_confirm'),
     url(r'^accounts/password_reset_complete/$', 'django.contrib.auth.views.password_reset_complete',  name='password_reset_complete'),
+    url(r'^downloads/$', 'warcraft.views.downloads'),
     url(r'^accounts/edit/$', 'warcraft.views.edit_profile'),
     url(r'^accounts/edit_profile_success/$', 'warcraft.views.edit_profile_success'),
     url(r'^accounts/change_password/$', 'warcraft.views.change_password'),
     url(r'^accounts/change_password_success/$', 'warcraft.views.change_password_success'),
-    
+    url(r'^send_something/$', 'warcraft.views.send_something'),
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

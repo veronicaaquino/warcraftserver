@@ -6,7 +6,7 @@ from simple_email_confirmation import SimpleEmailConfirmationUserMixin
 from django.contrib.auth.models import UserManager
 from django.contrib.auth.models import BaseUserManager
 from django.contrib.auth.signals import user_logged_in, user_logged_out
-
+from django.core.mail import send_mail
 
 
 # Create your models here.
@@ -66,6 +66,10 @@ class CustomUserManager(BaseUserManager):
 
         
 class User(SimpleEmailConfirmationUserMixin, AbstractBaseUser):
+        wins = models.PositiveIntegerField(default = 0)
+        losses = models.PositiveIntegerField(default = 0)
+        rating = models.FloatField(default = 1000)
+        ranking = models.PositiveIntegerField(default = 1)
         userName = models.CharField(max_length=31, unique = True)
         picture = models.ImageField(upload_to="images")
         firstName = models.CharField(max_length=31)
@@ -76,6 +80,7 @@ class User(SimpleEmailConfirmationUserMixin, AbstractBaseUser):
         is_online = models.BooleanField(default = False)
         login_internal = models.BooleanField(default = False)
         login_web = models.BooleanField(default = False)
+        emailEvery = models.IntegerField(default = 0)
         USERNAME_FIELD = 'userName'
         REQUIRED_FIELDS = []
         
@@ -103,3 +108,15 @@ class User(SimpleEmailConfirmationUserMixin, AbstractBaseUser):
             
         def get_email(self):
             return self.email
+            
+        def get_wins(self):
+            return self.wins
+
+        def get_losses(self):
+            return self.losses
+
+        def get_rating(self):
+            return self.rating
+
+        def get_ranking(self):
+            return self.ranking
