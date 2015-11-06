@@ -38,7 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'simple_email_confirmation',
-    #'pinax.notifications',
+    'postman',
     'widget_tweaks',
     'warcraft',
 )
@@ -60,7 +60,7 @@ ROOT_URLCONF = 'ecs160.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates'), os.path.join(BASE_DIR, 'django-messages/django_messages/templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates'), os.path.join(BASE_DIR, 'django-postman/postman/templates/postman')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -69,6 +69,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.template.context_processors.media',
                 'django.contrib.messages.context_processors.messages',
+                'postman.context_processors.inbox',
             ],
         },
     },
@@ -119,4 +120,13 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'chriscraftecs160@gmail.com'
 EMAIL_HOST_PASSWORD = 'webserver'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+# postman configuration
+
+POSTMAN_DISALLOW_ANONYMOUS = True
+POSTMAN_AUTO_MODERATE_AS = True
+POSTMAN_QUICKREPLY_QUOTE_BODY = True
+POSTMAN_NOTIFIER_APP = 'notification'
+POSTMAN_MAILER_APP = 'mailer'
 

@@ -18,14 +18,13 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
-import notifications
 
 urlpatterns = [
     url(r'^warcraft/', include('warcraft.urls', namespace="warcraft")),
     url(r'^/$', include('warcraft.urls', namespace="warcraft")),
     url(r'', include('warcraft.urls', namespace="warcraft")),
     url(r'^admin/', include(admin.site.urls)),
-    #url(r'^notifications/', include('pinax.notifications.urls')),
+    url(r'^messages/', include('postman.urls', namespace='postman', app_name='postman')),
     url(r'^accounts/login/$', 'warcraft.views.login'),
     url(r'^accounts/logout/$', 'warcraft.views.logout'),
     url(r'^accounts/loggedin/$', 'warcraft.views.loggedin'),
