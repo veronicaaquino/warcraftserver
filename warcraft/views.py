@@ -236,8 +236,3 @@ def internalLoggedIn (request):
 def downloads(request):
     template = loader.get_template('warcraft/downloads.html')
     return HttpResponse(template.render())
-    
-def send_something(request):
-    send_something_1()
-    send_something_2()
-    return render(request, 'warcraft/send_something.html')

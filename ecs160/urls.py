@@ -25,8 +25,6 @@ urlpatterns = [
     url(r'^/$', include('warcraft.urls', namespace="warcraft")),
     url(r'', include('warcraft.urls', namespace="warcraft")),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^messages/', include('django_messages.urls')),
-    #url('^inbox/notifications/', include('notifications.urls')),
     #url(r'^notifications/', include('pinax.notifications.urls')),
     url(r'^accounts/login/$', 'warcraft.views.login'),
     url(r'^accounts/logout/$', 'warcraft.views.logout'),
@@ -47,6 +45,5 @@ urlpatterns = [
     url(r'^accounts/edit_profile_success/$', 'warcraft.views.edit_profile_success'),
     url(r'^accounts/change_password/$', 'warcraft.views.change_password'),
     url(r'^accounts/change_password_success/$', 'warcraft.views.change_password_success'),
-    url(r'^send_something/$', 'warcraft.views.send_something'),
-    
+
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
