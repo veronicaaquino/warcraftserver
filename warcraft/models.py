@@ -6,20 +6,17 @@ from simple_email_confirmation import SimpleEmailConfirmationUserMixin
 from django.contrib.auth.models import UserManager
 from django.contrib.auth.models import BaseUserManager
 from django.contrib.auth.signals import user_logged_in, user_logged_out
-from django.core.mail import send_mail
-
 
 # Create your models here.
 
-# class UserProfile(models.Model):
-#     user   = models.OneToOneField(User)
-#     picture = models.ImageField(upload_to='images', blank=True)
-#     wins = models.PositiveIntegerField(default = 0)
-#     loss = models.PositiveIntegerField(default = 0)
+'''class UserProfile(models.Model):
+    user   = models.OneToOneField(User)
+    picture = models.ImageField(upload_to="images")
+    REQUIRED_FIELDS = ('user', 'email',)
     
-#     def __unicode__(self):
-#         return self.user.username
-    
+    def __unicode__(self):
+        return self.user.usernam'''
+
 class LoggedUser(models.Model):
     user = models.ForeignKey('User')
     web = models.BooleanField(default=False)
@@ -31,6 +28,14 @@ class LoggedUser(models.Model):
     def login_user(sender, request, user, **kwargs):
         try:
             e = LoggedUser.objects.get(user=user)
+            if user.login_web is True and e.web is False:
+                e.web=user.login_web
+                e.save()
+            
+            elif user.login_internal is True and e.internal is False:
+                e.internal=user.login_internal
+                e.save()
+       
         except LoggedUser.DoesNotExist:
             LoggedUser(user=user, web=user.login_web, internal=user.login_internal).save()
 
@@ -71,7 +76,7 @@ class User(SimpleEmailConfirmationUserMixin, AbstractBaseUser):
         rating = models.FloatField(default = 1000)
         ranking = models.PositiveIntegerField(default = 1)
         userName = models.CharField(max_length=31, unique = True)
-        picture = models.ImageField(upload_to="images")
+        picture =models.ImageField(upload_to="images")
         firstName = models.CharField(max_length=31)
         lastName = models.CharField(max_length=31)
         email = models.EmailField('email address')
@@ -80,9 +85,10 @@ class User(SimpleEmailConfirmationUserMixin, AbstractBaseUser):
         is_online = models.BooleanField(default = False)
         login_internal = models.BooleanField(default = False)
         login_web = models.BooleanField(default = False)
-        emailEvery = models.IntegerField(default = 0)
         USERNAME_FIELD = 'userName'
         REQUIRED_FIELDS = []
+        emailEvery= models.IntegerField(default = 0)
+        has_messages = models.BooleanField(default = False)
         
         objects = CustomUserManager()
 
@@ -108,7 +114,7 @@ class User(SimpleEmailConfirmationUserMixin, AbstractBaseUser):
             
         def get_email(self):
             return self.email
-            
+        
         def get_wins(self):
             return self.wins
 
@@ -120,3 +126,5 @@ class User(SimpleEmailConfirmationUserMixin, AbstractBaseUser):
 
         def get_ranking(self):
             return self.ranking
+
+

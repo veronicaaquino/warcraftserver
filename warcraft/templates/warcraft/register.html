@@ -7,20 +7,28 @@
 
 
     <head>
-        <link rel="stylesheet" type="text/css" href="{% static 'warcraft/register_style.css' %}" />
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, maximum-scale=1.0,  user-scalable=0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        
+        <link rel="stylesheet" type="text/css" href="{% static 'warcraft/css/register_style.css' %}"/>
+        <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/medievalsharp" type="text/css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>        
         <title>ChrisCraft Registration</title>
     </head>
 
-    <body>
+    <body width = "device-width">
     
     {% block content %}
         
     
-       <h1 class="register-title">Register for ChrisCraft</h1>
+       <h1 class="register-title fstyle">Register for ChrisCraft</h1>
         <!--<div class="register">-->
         
-        <form class = "register" enctype="multipart/form-data" action="/accounts/register/" method="post">
+        <center>
+        <form class = "register fstyle" enctype="multipart/form-data" action="/accounts/register/" method="post">
             
             <h3> Please enter your information below: </h3>
             
@@ -50,17 +58,14 @@
             <p><label for="id_picture">Picture:</label> 
             <input class="register-input" id="id_picture" name="picture" type="file" /></p>
             -->
-            <input type = "submit" class="register-button" value="Register" />
+            <input type = "submit" class="register-button fstyle" value="Register" />
         
         </form>
+        </center>
         
         
     
     {% endblock %}
 
-        <div style="color:#FFFFFF" id="signature"> 
-                <p>#PotatoMafia Productions</p> 
-        </div>
-
-    </body>
+        </body>
 </html>

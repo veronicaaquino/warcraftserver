@@ -1,75 +1,201 @@
 {% load staticfiles %}
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
+
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="{% static 'warcraft/index.css' %}">
-<style>
-a:link {
-    text-decoration: none;
-    color:white;
-}
 
-a:visited {
-    text-decoration: none;
-    color:white;
-}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-a:hover {
-    text-decoration: underline;
-    color:white;
-}
+    <title>ChrisCraft: Tides of Nitta Home</title>
 
-a:active {
-    text-decoration: underline;
-    color:white;
-}
-</style>
+    <!-- Bootstrap Core CSS -->
+    <!--<link href="css/bootstrap.min.css" rel="stylesheet">-->
+    <link rel="stylesheet" href="{% static 'warcraft/css/bootstrap.css' %}">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'warcraft/css/full-slider.css' %}">
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/medievalsharp" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
 </head>
-<body>
 
-<div class="header">
-<h1>CHRISCRAFT: TIDES OF NITTA</h1>
-<p class = "butn1"><a href = "/accounts/login">Log In</a></p>
-<p class = "butn2"><a href = "/accounts/register">Register</a></p>
-</div>
+<body width = "device-width">
 
-<div class="row">
-<div class="col-3 col-s-3 menu">
-<ul>
-<li><a href="/downloads">Download</a></li>
-<li>Forums</li>
-<li>Contact</li>
-<li>About</li>
-<li>Game Statistics</li>
-<li>Live Stream</li>
-</ul>
-</div>
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-left">
+                    <li>
+                        <a href="#">HOME</a>
+                    </li>
+                    <li>
+                        <a href="#">RANKING</a>
+                    </li>
+                    <li>
+                        <a href="#">FORUM</a>
+                    </li>
+                    <li>
+                        <a href="#">LIVE STREAM</a>
+                    </li>
+                     <li>
+                        <a href="#">CONTACT</a>
+                    </li>
+  
+                </ul>
+                
+                <ul ul class="nav navbar-nav navbar-right">  
+                
+                     <li style="float:right;" > 
+                        <a  href="/accounts/register">REGISTER</a></a>
+                    </li>
+                   
+                    <li style="float:right;" > 
+                        <a  href="/accounts/login">LOGIN</a>
+                    </li>
+                   
+                        
+                </ul>
+                
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
 
-<div class="col-6 col-s-9">
-<h1>The Game</h1>
-<p> Chriscraft: Tides of Nitta is a clone of 1995 DOS RTS game Warcraft II.  </p>
- <img src="{%static 'warcraft/images/Splash.png' %}" width="500" height="300">
-</div>
+    <!-- Full Page Image Background Carousel Header -->
+    <header id="myCarousel" class="carousel slide">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
 
-<div class="col-3 col-s-12">
-<div class="aside">
-<h2>What?</h2>
-<p>Chriscraft is a fantasy-themed real-time strategy game.</p>
-<h2>Who?</h2>
-<p>Engineering students at UC Davis have created a clone of Warcraft II.</p>
-<h2>How?</h2>
-<p>Multiple teams are working on various platforms.</p>
-</div>
-</div>
+        <!-- Wrapper for Slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <!-- Set the first background image using inline CSS below. -->
+                <div class="fill">
+                    <div class="dwnld-button">
+                            <a href="" class="DLButton" style="color:#ffffff" ><b>DOWNLOAD</b></a>
+                    </div> 
+                </div>
+            </div>
+            <div class="item">
+                <!-- Set the second background image using inline CSS below. -->
+                <div class="fill2">
+                    <div class="login_button">
+                        <a href="/accounts/login" class="loginButton" style="color:#ffffff" ><b>LOGIN</b></a>
+                    </div> 
+                    <br>
+                    <div class="register_button">
+                        <a href="/accounts/register" class="registerButton" style="color:#ffffff" ><b>REGISTER</b></a>
+                    </div> 
+                </div>
+            </div>
+        </div>
+            
+            <!-- FORUMN SLIDE: TBD
+            <div class="item">
+                <!-- Set the third background image using inline CSS below.
+                <div class="fill3" style="background-image:url({% static 'warcraft/images/castle.jpg' %});"></div>
+                <div class="carousel-caption">
+                    <h1>JOIN FORUMS OR SOMETHING</h1>
+                </div>
+            </div>
+        </div> -->
 
-</div>
+        <!-- Controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="icon-prev" style="font-size: 90px;"></span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="icon-next" style="font-size: 90px;"></span>
+        </a>
 
-<div class="footer">
-<p>This website allows users to sign up for free and unleash amazing things such as forums and much more.</p>
-</div>
- 
+    </header>
+
+    <!-- Page Content -->
+   <!-- 
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>Full Slider by Start Bootstrap</h1>
+                <p>The background images for the slider are set directly in the HTML using inline CSS. The rest of the styles for this template are contained within the <code>full-slider.css</code>file.</p>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- Footer 
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Your Website 2014</p>
+                </div>
+            </div>
+            <!-- /.row 
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+
+    <!-- jQuery -->
+    <script src="{% static 'warcraft/js/jquery.js' %}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{% static 'warcraft/js/bootstrap.min.js' %}"></script>
+
+    <!-- Script to Activate the Carousel -->
+    <script>
+    $('.carousel').carousel({
+        interval: 10000 //changes the speed
+    })
+    </script>
 
 </body>
+
 </html>
+
+<!--  DROP DOWN LOGIN  
+    <ul> 
+        <li><a href="login.html" class="loginButton">login</a>
+                
+        </li> 
+    </ul>
+    
+    jQuery(document).ready(function(){
+   var formHTML  = '<form id="loginform" method="post">'; 
+   formHTML += '<input type="text" name="username" id="username" value="username" />';  
+   formHTML += '<input type="password" name="userpass" id="userpass" value="password" /> '; 
+   formHTML += '<button type="submit">Login</button>'; 
+   formHTML += '</form>'; 
+   jQuery("#loginButton").append(formHTML);
+}
+                    -->
+

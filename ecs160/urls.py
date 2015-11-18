@@ -18,7 +18,6 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
-import notifications
 
 urlpatterns = [
     url(r'^warcraft/', include('warcraft.urls', namespace="warcraft")),
@@ -26,8 +25,6 @@ urlpatterns = [
     url(r'', include('warcraft.urls', namespace="warcraft")),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^messages/', include('django_messages.urls')),
-    #url('^inbox/notifications/', include('notifications.urls')),
-    #url(r'^notifications/', include('pinax.notifications.urls')),
     url(r'^accounts/login/$', 'warcraft.views.login'),
     url(r'^accounts/logout/$', 'warcraft.views.logout'),
     url(r'^accounts/loggedin/$', 'warcraft.views.loggedin'),
@@ -36,7 +33,7 @@ urlpatterns = [
     url(r'^accounts/register_success/$', 'warcraft.views.register_success'),
     url(r'^accounts/internalLogin/$', 'warcraft.views.internalLogin'),
     url(r'^accounts/activate/(?P<userName>\w{1,50})/(?P<activation_key>\w{1,50})/$', 'warcraft.views.activate'),
-    url(r'^web-players-status/$', 'warcraft.views.webLoggedIn'),
+	url(r'^web-players-status/$', 'warcraft.views.webLoggedIn'),
     url(r'^game-players-status/$', 'warcraft.views.internalLoggedIn'),
     url(r'^accounts/password_reset/$', 'django.contrib.auth.views.password_reset'),
     url(r'^accounts/password_reset_done/$', 'django.contrib.auth.views.password_reset_done', name='password_reset_done'),
@@ -47,6 +44,6 @@ urlpatterns = [
     url(r'^accounts/edit_profile_success/$', 'warcraft.views.edit_profile_success'),
     url(r'^accounts/change_password/$', 'warcraft.views.change_password'),
     url(r'^accounts/change_password_success/$', 'warcraft.views.change_password_success'),
-    url(r'^send_something/$', 'warcraft.views.send_something'),
-    
+    url(r'^compose_success/$', 'warcraft.views.compose_success'),    
+    url(r'^send_something/$', 'warcraft.views.send_something'),    
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

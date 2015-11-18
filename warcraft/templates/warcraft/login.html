@@ -3,15 +3,21 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
-
+    
     <head>
-        <link rel="stylesheet" type="text/css" href="{% static 'warcraft/login_style.css' %}" />
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+    
+        <link rel="stylesheet" type="text/css" href="{% static 'warcraft/css/login_style.css' %}" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>        
         <title>ChrisCraft Login</title>
+   
     </head>
  
-    <body>
+    <body width = "device-width">
 
     {%block content%}
     
@@ -19,10 +25,13 @@
             <p class = 'error'> Sorry invalid username or password</p>
         {% endif %}
 
+       
+   
         <section class="container">
-            <div class="login">
+            <div class="login animate fadeIn one">
             
-            <h1>Login to ChrisCraft: Tides of Nitta</h1>
+            
+            <h1 class="animate fadeIn one">Login to ChrisCraft: Tides of Nitta</h1>
         
             <!--    <form action="/accounts/login/" method='post'> {% csrf_token %}
                     <p><label id="username" for="username">Username: </label>
@@ -32,16 +41,18 @@
                     <p><input type="submit" name="commit" value="Login"></p>
                    
                 </form>-->
-            <form action="/accounts/login/" method='post'>                
+                
+                
+            <form class="animate fadeIn one" action="/accounts/login/" method='post'>                
                {% csrf_token %}
                {{ form.as_p }}
-                <p><input type="submit" name="commit" value="Login"></p>
+                <p><input type="submit" name="commit" value="LOGIN"></p>
             </form>
             </div>
             
             
             <div class="login-help">
-                <p>Forgot your password? <a href="/accounts/password_reset">Click here to reset it</a>.</p>
+                <p>Forgot your password? <a href="index.html">Click here to reset it</a>.</p>
             </div>
             
             <div class="login-help">
@@ -54,13 +65,6 @@
     {% endblock %}
     
 
-        <div style="color:#FFFFFF" id="signature"> 
-            <p>#PotatoMafia Productions</p> 
-        </div>
-
     </body>
-
 </html>    
-    
-  
     

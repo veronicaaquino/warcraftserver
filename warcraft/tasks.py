@@ -15,14 +15,19 @@ def get_receivers( minutes ):
 def sending_mail( minutes ):
   for user in User.objects.all():
     if (user.emailEvery == minutes):
-      msg = render_to_string('warcraft/periodic_template.html', {'date': datetime.now(), 'often': minutes, 'name': user.firstName})
-      send_mail('Periodic Email', 'nothing', 'chriscraftecs160@gmail.com', [user.email], fail_silently=False, html_message=msg)
+      if (user.has_messages == True):
+        content = "You have new messages"
+        user.has_messages = False
+        user.save()
+      else:
+        content = "You have no new messages"
+      msg = render_to_string('warcraft/periodic_template.html', {'date': datetime.now(), 'often': minutes, 'name': user.firstName, 'message': content})
+      send_mail('Periodic Email', 'nothing', 'chriscraftecs160@gmail.com', [user.email], fail_silently=False, html_message= msg)
 
-
-@periodic_task(run_every=(crontab(minute='*/1')), name="send_something_1", ignore_result=True)
+@periodic_task(run_every=(crontab(minute='*/10')), name="send_something_1", ignore_result=True)
 def send_something_1():
-  sending_mail(1)
+  sending_mail(10)
 
-@periodic_task(run_every=(crontab(minute='*/2')), name="send_something_2", ignore_result=True)
+@periodic_task(run_every=(crontab(minute='*/60')), name="send_something_2", ignore_result=True)
 def send_something_2():
-  sending_mail(2)
+  sending_mail(60)

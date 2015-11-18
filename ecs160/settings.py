@@ -27,6 +27,21 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# CELERY STUFF
+
+BROKER_URL = 'redis://localhost:6379'
+
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+
+CELERY_ACCEPT_CONTENT = ['application/json']
+
+CELERY_TASK_SERIALIZER = 'json'
+
+CELERY_RESULT_SERIALIZER = 'json'
+
+CELERY_TIMEZONE = 'Africa/Nairobi'
+
+
 
 # Application definition
 
@@ -39,8 +54,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'simple_email_confirmation',
     'django_messages',
-    #'notifications',
-    #'pinax.notifications',
     'widget_tweaks',
     'warcraft',
 )
@@ -55,10 +68,6 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
 )
-
-# CRON_CLASSES = {
-#   "warcraft.models.MyCronJob",
-# }
 
 ROOT_URLCONF = 'ecs160.urls'
 
@@ -89,7 +98,7 @@ WSGI_APPLICATION = 'ecs160.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': '/home/vsaquino/ecs160web/ecs160/db.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -112,10 +121,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/home/vsaquino/ecs160web/ecs160/static'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = '/home/vsaquino/ecs160web/ecs160/media'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 AUTH_USER_MODEL = 'warcraft.User'
 
@@ -125,13 +134,3 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'chriscraftecs160@gmail.com'
 EMAIL_HOST_PASSWORD = 'webserver'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-
-DJANGO_MESSAGES_NOTIFY = True
-
-# CELERY STUFF
-BROKER_URL = 'redis://localhost:6379'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379'
-CELERY_ACCEPT_CONTENT = ['application/json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TIMEZONE = 'US/Pacific'

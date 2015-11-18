@@ -16,14 +16,17 @@ from .models import LoggedUser
 
 from .forms import AuthenticationForm, RegistrationForm, EditProfileForm, ChangePasswordForm
 
-media = '/home/vsaquino/ecs160web/ecs160/media'
+from .tasks import *
+
+media = '/home/vsaquino/ecs160web/media/'
+
 
 # Create your views here.
 
 def index(request):
     template = loader.get_template('warcraft/index.html')
     return HttpResponse(template.render())
-
+    
 def ranking(request):
     top_players = User.objects.order_by('-rating')
     current_index = 1
@@ -144,7 +147,7 @@ def invalid_login(request):
     
 def edit_profile(request):
     if request.method == "POST":
-        form = EditProfileForm(request.POST, request.FILES, instance=request.user)
+        form = EditProfileForm(data=request.POST, instance=request.user)
         if form.is_valid():
             user = form.save()
             if 'picture' in request.FILES:
@@ -154,7 +157,6 @@ def edit_profile(request):
             fname = request.user.firstName
             lname = request.user.lastName
             email = request.user.email
-            emailEvery = request.user.emailEvery
             return render(request, 'warcraft/edit_profile_success.html', {'full_name': fname+" "+lname, 'picture':picture, 'email':email})
     else:
         form = EditProfileForm(instance=request.user)
@@ -187,10 +189,10 @@ def register_user(request):
         form = RegistrationForm(request.POST, request.FILES)
         if form.is_valid():
             user = form.save()
-            link = "http://apmishra100.koding.io/accounts/activate/%s/%s/" %(user.userName, user.confirmation_key)
+            link = "http://vsaquino.koding.io/accounts/activate/%s/%s/" %(user.userName, user.confirmation_key)
             picture = user.picture
             d = Context({'username':user.userName, 'link':link, 'avatar':picture}) 
-            message = "%s please visit http://apmishra100.koding.io/accounts/activate/%s/%s/ to activate your account." %(user.userName, user.userName, user.confirmation_key)
+            message = "%s please visit http://vsaquino.koding.io/accounts/activate/%s/%s/ to activate your account." %(user.userName, user.userName, user.confirmation_key)
             plaintext = get_template('warcraft/email.txt')
             htmly = get_template('warcraft/email.html')
             text_content = plaintext.render(d)
@@ -218,8 +220,7 @@ def internalLogin (request):
             if user.is_active is not False:
                 user.login_internal = True
                 django_login(request, user)
-                online_users = LoggedUser.objects.all().filter(internal=True)
-                return JsonResponse({'LoginStatus': 'Success'}, {'Loggedin': online_users})
+                return JsonResponse({'LoginStatus': 'Success'})
             else:
                 return JsonResponse({'LoginStatus': 'Unverified'} )
         else:
@@ -236,8 +237,12 @@ def internalLoggedIn (request):
 def downloads(request):
     template = loader.get_template('warcraft/downloads.html')
     return HttpResponse(template.render())
-    
+
+def compose_success(request):
+    x = request.POST.get("recipient", "")
+    send_mail('You sent mail!', 'You send a message!', 'chriscraftecs160@gmail.com', [request.user.email], fail_silently=False)
+    return render(request, 'warcraft/compose_success.html', {'recipient' : x})
+
 def send_something(request):
     send_something_1()
-    send_something_2()
     return render(request, 'warcraft/send_something.html')

@@ -1,5 +1,6 @@
 from django.http import Http404, HttpResponseRedirect
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import render_to_response, get_object_or_404, render
+from django.template.loader import render_to_string
 from django.template import RequestContext
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -11,6 +12,7 @@ from django.conf import settings
 from django_messages.models import Message
 from django_messages.forms import ComposeForm
 from django_messages.utils import format_quote, get_user_model, get_username_field
+from django.core.mail import send_mail
 
 User = get_user_model()
 
@@ -21,6 +23,7 @@ else:
 
 @login_required
 def inbox(request, template_name='django_messages/inbox.html'):
+
     """
     Displays a list of received messages for the current user.
     Optional Arguments:
@@ -77,10 +80,27 @@ def compose(request, recipient=None, form_class=ComposeForm,
         if form.is_valid():
             form.save(sender=request.user)
             messages.info(request, _(u"Message successfully sent."))
+            email_to = User.objects.get(userName=request.POST.get("recipient", ""))
+            email_word = email_to.email
+            email_to.has_messages = True
+            email_to.save()
+            subject = "New Message: " + request.POST.get("subject", "")
+            msg = render_to_string('django_messages/new_message_email.html', {'recipient': request.POST.get("recipient", ""), 'sender': sender.userName, 'message': request.POST.get("body", "")})
+            if (email_to.emailEvery == 0):
+              email_to.has_messages = False
+              email_to.save()
+              send_mail(subject, 'You  have a new message.', 'chriscraftecs160@gmail.com', [email_word], fail_silently=False, html_message=msg)
+              
             if success_url is None:
                 success_url = reverse('messages_inbox')
             if 'next' in request.GET:
                 success_url = request.GET['next']
+
+            if (email_to.has_messages == True):
+              cough = "yes"
+            else:
+              cough = "no"
+            #return render(request, 'django_messages/nameright.html', {'name': cough})
             return HttpResponseRedirect(success_url)
     else:
         form = form_class()
@@ -112,8 +132,22 @@ def reply(request, message_id, form_class=ComposeForm,
         sender = request.user
         form = form_class(request.POST, recipient_filter=recipient_filter)
         if form.is_valid():
+
+
             form.save(sender=request.user, parent_msg=parent)
             messages.info(request, _(u"Message successfully sent."))
+            email_to = User.objects.get(userName=request.POST.get("recipient", ""))
+            email_word = email_to.email
+            email_to.has_messages = True
+            email_to.save()
+            subject = "New Reply: " + request.POST.get("subject", "")
+            msg = render_to_string('django_messages/new_message_email.html', {'recipient': request.POST.get("recipient", ""), 'sender': sender.userName, 'message': request.POST.get("body", "")})
+            if (email_to.emailEvery == 0):
+              email_to.has_messages = False
+              email_to.save()
+              send_mail(subject, 'You  have a new message.', 'chriscraftecs160@gmail.com', [email_word], fail_silently=False, html_message=msg)
+ 
+
             if success_url is None:
                 success_url = reverse('messages_inbox')
             return HttpResponseRedirect(success_url)
@@ -222,3 +256,10 @@ def view(request, message_id, form_class=ComposeForm, quote_helper=format_quote,
         context['reply_form'] = form
     return render_to_response(template_name, context,
         context_instance=RequestContext(request))
+@login_required
+def message_main(request):
+  return render(request, 'django_messages/view.html')
+
+@login_required
+def compose_success(request):
+  return render(request, 'django_messages/compose_success.html')
