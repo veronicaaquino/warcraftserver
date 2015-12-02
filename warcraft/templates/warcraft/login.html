@@ -1,10 +1,17 @@
 <!-- login.html -->
 {% load staticfiles %}
+{% load widget_tweaks %}
 
 <!DOCTYPE html>
 <html lang="en">
     
     <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        
         <link rel="stylesheet" type="text/css" href="{% static 'warcraft/css/login_style.css' %}" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>        
         <title>ChrisCraft Login</title>
@@ -14,6 +21,7 @@
     <body>
 
     {%block content%}
+    
 
         <section class="container">
             <div class="login animate fadeIn one">
@@ -37,6 +45,15 @@
                 <p><input type="submit" name="commit" value="LOGIN"></p>
             </form>
             </div>
+            
+            <div class="login-mobile-form">
+                <form class="animate" action="/accounts/login/" method='post'>                
+                   {% csrf_token %}
+                   {{ form.as_p }}
+                    <p><input type="submit" name="commit" value="LOGIN"></p>
+                </form>
+            </div>
+            
             
             <!--<div class="login-help">
                 {%if form.errors %}

@@ -54,20 +54,18 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-left">
                     <li>
-                        <a href="/ranking">&nbsp;&nbsp;<i class="glyphicon glyphicon-fire"></i>&nbsp;&nbsp;RANKING</a>
+                        <a href="/ranking"><i class="glyphicon glyphicon-fire"></i>&nbsp;&nbsp;RANKING</a>
                     </li>
-                    <li>
-                <       <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Find other users now!"><i class="glyphicon glyphicon-globe"></i>&nbsp;&nbsp;ONLINE USERS<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="/web-players-status">WEB PLAYERS</a>
-                                </li>
-                                <li>
-                                    <a href="/game-players-status">GAME PLAYERS</a>
-                                </li>
-                            </ul>
-                        </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Find other users now!"><i class="glyphicon glyphicon-globe"></i>&nbsp;&nbsp;ONLINE USERS<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="/web-players-status">WEB PLAYERS</a>
+                            </li>
+                            <li>
+                                <a href="/game-players-status">GAME PLAYERS</a>
+                            </li>
+                        </ul>
                     </li>
                     <li>
                         <a href="#"><i class="glyphicon glyphicon-comment"></i>&nbsp;&nbsp;FORUMS</a>
@@ -99,30 +97,39 @@
         <ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
             <li data-target="#myCarousel" data-slide-to="1"></li>
-            <li data-target="#myCarousel" data-slide-to="2"></li>
         </ol>
 
         <!-- Wrapper for Slides -->
         <div class="carousel-inner">
             <div class="item active">
                 <!-- Set the first background image using inline CSS below. -->
-                <div class="fill" style="background-image:url({% static 'warcraft/images/home/Splash_map2.png' %});"></div>
-                <div class="dwnld-button">
-                        <a href="" class="DLButton" style="color:#ffffff" ><b>DOWNLOAD</b></a>
-                </div> 
-  
+                <div class="fill">
+                    <div class="dwnld-button">
+                            <a href="" class="DLButton" style="color:#ffffff" ><b>DOWNLOAD</b></a>
+                    </div> 
+                </div>
                 <!--<audio controls><source src="{% static 'warcraft/intro.mp3' %}"></audio>-->
 
             </div>
             <div class="item">
                 <!-- Set the second background image using inline CSS below. -->
-                <div class="fill2" style="background-image:url(/static/warcraft/images/home/Splash_2.png);">
+                <div class="fill2">
                     <a href="/accounts/login">
                         <div class="imgBox1"></div>
                     </a>
                     <a href="/accounts/register">
                         <div class="imgBox2"></div>
                     </a>
+                </div>
+                
+                <div class="fill2m">
+                    <div class="login_button">
+                        <a href="/accounts/login" class="loginButton" style="color:#ffffff" ><b>LOGIN</b></a>
+                    </div> 
+                    <br>
+                    <div class="register_button">
+                        <a href="/accounts/register" class="registerButton" style="color:#ffffff" ><b>REGISTER</b></a>
+                    </div> 
                 </div>
             </div>
         </div>
