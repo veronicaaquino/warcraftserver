@@ -22,7 +22,7 @@ body {
   background: #0A0A0A;
   background-color: #000000;
   background-image: url("../images/new_register.jpg");
-  background-repeat: repeat;
+  background-repeat: no-repeat;
   background-size: cover;
   margin:auto;
 }
@@ -182,7 +182,21 @@ input {
 }
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 1200px) {
-    .navbar {
-        display: none;
-    }
+.navbar {
+    display: none;
+}
+
+.box1{
+    
+    float: center;
+    width: 70%;
+    display: inline-block;
+    margin: 1% auto;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+    
 }
