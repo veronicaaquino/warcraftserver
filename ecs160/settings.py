@@ -56,6 +56,7 @@ INSTALLED_APPS = (
     'django_messages',
     'widget_tweaks',
     'warcraft',
+    'forum',
 )
 
 MIDDLEWARE_CLASSES = (

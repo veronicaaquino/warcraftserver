@@ -11,7 +11,13 @@ html {
       -ms-text-size-adjust: 100%;
 }
 body {
+  padding-top: 50px;
   margin: 0;
+}
+@media (max-width: 979px) {
+  body {
+    padding-top: 0px;
+  }
 }
 article,
 aside,
@@ -3534,7 +3540,7 @@ tbody.collapse.in {
 .navbar-fixed-bottom .dropdown .caret {
   content: "";
   border-top: 0;
-  opacity: 0.5;
+  border-bottom: 4px solid;
 }
 .dropup .dropdown-menu,
 .navbar-fixed-bottom .dropdown .dropdown-menu {
@@ -4067,11 +4073,12 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   border-top-right-radius: 0;
 }
 .navbar {
+  background-image: -moz-linear-gradient(0% 48% 270deg, #191919, #FFFFFF, #0c0c0c 0%);
+  background-image: -webkit-gradient(linear, 0% 48%, 0% 47%, from(#0c0c0c), to(#191919));
   position: relative;
   min-height: 50px;
   margin-bottom: 20px;
-  background-color: #222222;
-  opacity: 0.8;
+  border: 1px solid transparent;
 }
 @media (min-width: 768px) {
   .navbar {
@@ -6584,7 +6591,7 @@ button.close {
 }
 
 a.navbar-brand:hover, a.navbar-brand:active {
-    border: solid 1px #CCC; -moz-box-shadow: 1px 1px 5px #999; -webkit-box-shadow: 1px 1px 5px #999; box-shadow: 1px 1px 5px #999;
+    background-image: url("../images/home/tiny_logoh2.png");
 }
 
 a.navbar-toggle:hover, a.navbar-toggle:active {

@@ -23,7 +23,7 @@ class LoggedUser(models.Model):
     internal = models.BooleanField(default=False)
 
     def __unicode__(self):
-        return self.user.userName
+        return self
 
     def login_user(sender, request, user, **kwargs):
         try:
@@ -41,8 +41,15 @@ class LoggedUser(models.Model):
 
     def logout_user(sender, request, user, **kwargs):
         try:
-            u = LoggedUser.objects.get(user=user)
-            u.delete()
+            e = LoggedUser.objects.get(user=user)
+            if user.login_web is False and user.login_internal is True:
+                e.web=user.login_web
+                e.save()
+            elif user.login_internal is False and user.login_web is True:
+                e.internal=user.login_internal
+                e.save()
+            else :
+                e.delete()
         except LoggedUser.DoesNotExist:
             pass
 
@@ -71,6 +78,7 @@ class CustomUserManager(BaseUserManager):
 
         
 class User(SimpleEmailConfirmationUserMixin, AbstractBaseUser):
+        posts = models.IntegerField(default=0)
         wins = models.PositiveIntegerField(default = 0)
         losses = models.PositiveIntegerField(default = 0)
         rating = models.FloatField(default = 1000)
@@ -123,6 +131,21 @@ class User(SimpleEmailConfirmationUserMixin, AbstractBaseUser):
 
         def get_rating(self):
             return self.rating
+            
+        def beats(self, losingPlayer, players):
+          if players == 2:
+              k = 10 #The K value is an arbitrary value we choose based on how much we want
+          if players > 2:
+              k = 10*(players/2)
+              #a player's score to increase/decrease after a match
+              Ea = 1 / (1 + 10** ((self.rating - losingPlayer.rating) / 400))
+              Eb = 1 / (1 + 10** ((losingPlayer.rating - self.rating) / 400))
+              self.wins = self.wins + 1
+              self.rating = math.trunc(self.rating + k * (1 - Ea))
+              self.save()
+              losingPlayer.losses = losingPlayer.losses + 1
+              losingPlayer.rating = math.trunc(losingPlayer.rating + k * (0 - Eb))
+              losingPlayer.save()
 
         def get_ranking(self):
             return self.ranking

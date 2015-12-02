@@ -8,7 +8,7 @@
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -20,8 +20,10 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'warcraft/css/full-slider.css' %}">
-    <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/medievalsharp" type="text/css"/>
-
+    
+    <!-- Custom Font -->
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/autopia" type="text/css"/>
+    
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -31,7 +33,9 @@
 
 </head>
 
-<body width = "device-width">
+<body>
+    <!-- <audio><source src="{% static 'warcraft/intro.mp3' %}"></audio> -->
+
 
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -44,39 +48,43 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+                <a class="navbar-brand" href="#"><img src="{% static 'warcraft/images/home/tiny_logo.png' %}"></a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-left">
                     <li>
-                        <a href="#">HOME</a>
+                        <a href="/ranking">&nbsp;&nbsp;<i class="glyphicon glyphicon-fire"></i>&nbsp;&nbsp;RANKING</a>
                     </li>
                     <li>
-                        <a href="#">RANKING</a>
+                <       <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Find other users now!"><i class="glyphicon glyphicon-globe"></i>&nbsp;&nbsp;ONLINE USERS<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="/web-players-status">WEB PLAYERS</a>
+                                </li>
+                                <li>
+                                    <a href="/game-players-status">GAME PLAYERS</a>
+                                </li>
+                            </ul>
+                        </li>
                     </li>
                     <li>
-                        <a href="#">FORUM</a>
+                        <a href="#"><i class="glyphicon glyphicon-comment"></i>&nbsp;&nbsp;FORUMS</a>
                     </li>
-                    <li>
-                        <a href="#">LIVE STREAM</a>
-                    </li>
-                     <li>
-                        <a href="#">CONTACT</a>
-                    </li>
-  
                 </ul>
-                
-                <ul ul class="nav navbar-nav navbar-right">  
-                
-                     <li style="float:right;" > 
-                        <a  href="/accounts/register">REGISTER</a></a>
+                <ul class="nav navbar-nav navbar-right">  
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Join the battle!">LOGIN/REGISTER&nbsp;&nbsp;<i class="glyphicon glyphicon-queen"></i><b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li style= "float: right;">  
+                                <a href="/accounts/login">LOGIN&nbsp;&nbsp;</a>
+                            </li>
+                            <li style= "float: right;">  
+                                <a href="/accounts/register">REGISTER&nbsp;&nbsp;</a>
+                            </li>
+                        </ul>
                     </li>
-                   
-                    <li style="float:right;" > 
-                        <a  href="/accounts/login">LOGIN</a>
-                    </li>
-                   
-                        
                 </ul>
                 
             </div>
@@ -98,22 +106,23 @@
         <div class="carousel-inner">
             <div class="item active">
                 <!-- Set the first background image using inline CSS below. -->
-                <div class="fill">
-                    <div class="dwnld-button">
-                            <a href="" class="DLButton" style="color:#ffffff" ><b>DOWNLOAD</b></a>
-                    </div> 
-                </div>
+                <div class="fill" style="background-image:url({% static 'warcraft/images/home/Splash_map2.png' %});"></div>
+                <div class="dwnld-button">
+                        <a href="" class="DLButton" style="color:#ffffff" ><b>DOWNLOAD</b></a>
+                </div> 
+  
+                <!--<audio controls><source src="{% static 'warcraft/intro.mp3' %}"></audio>-->
+
             </div>
             <div class="item">
                 <!-- Set the second background image using inline CSS below. -->
-                <div class="fill2">
-                    <div class="login_button">
-                        <a href="/accounts/login" class="loginButton" style="color:#ffffff" ><b>LOGIN</b></a>
-                    </div> 
-                    <br>
-                    <div class="register_button">
-                        <a href="/accounts/register" class="registerButton" style="color:#ffffff" ><b>REGISTER</b></a>
-                    </div> 
+                <div class="fill2" style="background-image:url(/static/warcraft/images/home/Splash_2.png);">
+                    <a href="/accounts/login">
+                        <div class="imgBox1"></div>
+                    </a>
+                    <a href="/accounts/register">
+                        <div class="imgBox2"></div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -174,7 +183,7 @@
     <!-- Script to Activate the Carousel -->
     <script>
     $('.carousel').carousel({
-        interval: 10000 //changes the speed
+        interval: 15000 //changes the speed
     })
     </script>
 

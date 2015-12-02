@@ -5,64 +5,197 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, maximum-scale=1.0,  user-scalable=0">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        
+    <style type="text/css">
+     .signup{background-color: #222535; border-color: #DD8705;} 
+ .signup .panel-body label{
+ color: #FDFD2E;
+ font-weight: normal;
+ }
+ 
+ .signup .panel-heading{
+ background-color: #DD8705;
+ color: #FDFD2E;
+ }
+ 
+ .signup .panel-footer
+ {
+ background-color: #DD8705;
+ }
+    </style>
+
         <link rel="stylesheet" type="text/css" href="{% static 'warcraft/css/register_style.css' %}"/>
-        <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/medievalsharp" type="text/css"/>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>        
+        <link rel="stylesheet" href="{% static 'warcraft/css/bootstrap.css' %}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+            <script src="{% static 'warcraft/js/jquery.js' %}"></script>
+    <script src="{% static 'warcraft/js/bootstrap.min.js' %}"></script>
         <title>ChrisCraft Registration</title>
+    
+         <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/autopia" type="text/css"/>
+   
     </head>
 
-    <body width = "device-width">
+    <body>
+    
     
     {% block content %}
         
-    
-       <h1 class="register-title fstyle">Register for ChrisCraft</h1>
-        <!--<div class="register">-->
+    <!-- Navigation BEFORE login -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/warcraft"><img src="{% static 'warcraft/images/home/tiny_logo.png' %}"></a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-left">
+                    <li>
+                        <a href="/ranking">&nbsp;&nbsp;<i class="glyphicon glyphicon-fire"></i><span style="font-family: 'Autopiaregular', serif;">&nbsp;&nbsp;RANKING</span></a>
+                    </li>
+                    <li>
+                <       <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Find other users now!"><i class="glyphicon glyphicon-globe"></i><span style="font-family: 'Autopiaregular', serif;">&nbsp;&nbsp;ONLINE USERS</span><b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="/web-players-status"><span style="font-family: 'Autopiaregular', serif;">WEB PLAYERS</span></a>
+                                </li>
+                                <li>
+                                    <a href="/game-players-status"><span style="font-family: 'Autopiaregular', serif;">GAME PLAYERS</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                    </li>
+                    <li>
+                        <a href="#"><i class="glyphicon glyphicon-comment"></i><span style="font-family: 'Autopiaregular', serif;">&nbsp;&nbsp;FORUMS</span></a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">  
+                    <li style= "float: right;">  
+                        <a href="/accounts/login"><span style="font-family: 'Autopiaregular', serif;">LOGIN&nbsp;&nbsp;<i class="glyphicon glyphicon-queen"></i></span></a>
+                    </li>
+                </ul>
+                
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+     
+     {% csrf_token %}  
+            <div class="box1">
+            <div class="row">
+            <!--<div class="col-md-7">-->
+            <div>
+             
+              <div class="panel panel-default signup">
+                <div class="panel-heading signup">
+                <h4 class="panel-title">Sign Up</h4>
+              </div>
         
-        <center>
-        <form class = "register fstyle" enctype="multipart/form-data" action="/accounts/register/" method="post">
+        <div class="panel-body signup">
+            <form class = "form-horizontal" enctype="multipart/form-data" action="/accounts/register/" method="post">
+            {% csrf_token %} 
+           
+          
+           
+           <div class="form-group">
+              <label for="id_firstName" class="col-md-4 control-label">First Name:</label>
+                 <div class="col-md-8">
+                   <input id="id_firstName" class = "form-control" name="firstName" type="text" placeholder="Enter First Name..."/>
+                 </div>
+            </div>
+           
+           <div class="form-group">
+              <label for="id_lastName" class="col-md-4 control-label"> Last Name:</label>
+              <div class="col-md-8">
+               <input id="id_lastName" name="lastName" type="text" class="form-control" placeholder="Enter Last Name..."/>
+              </div>
+            </div>
             
-            <h3> Please enter your information below: </h3>
-            
-            {% csrf_token %}  
-            {{ form.as_p }}
-            <!--
-            <input type='hidden' name='csrfmiddlewaretoken' value='cbTTmrRCS2QlYIpoFpsjm6B1oZU9gbJn' />  
-            
-            <p><label for="id_firstName">First Name: </label> 
-            <input class="register-input" placeholder = " First Name" id="id_firstName" name="firstName" type="text" /></p>
-            
-            <p><label for="id_lastName">Last Name:</label> 
-            <input class="register-input" placeholder = " Last Name" id="id_lastName" name="lastName" type="text" /></p>
-            
-            <p><label for="id_userName">Username:</label> 
-            <input class="register-input" placeholder = " Username" id="id_userName" name="userName" type="text" /></p>
-            
-            <p><label for="id_email">Email:</label> 
-            <input class="register-input" placeholder = " E-mail Address" id="id_email" name="email" type="text" /></p>
-            
-            <p><label for="id_password1">Password:</label> 
-            <input class="register-input" placeholder = " Password" id="id_password1" name="password1" type="password" /></p>
-            
-            <p><label for="id_password2">Password (again):</label> 
-            <input class="register-input" placeholder = " Re-type Password" id="id_password2" name="password2" type="password" /></p>
-            
-            <p><label for="id_picture">Picture:</label> 
-            <input class="register-input" id="id_picture" name="picture" type="file" /></p>
-            -->
-            <input type = "submit" class="register-button fstyle" value="Register" />
+             <div class="form-group">
+              <label for="id_userName" class="col-md-4 control-label"> Username:</label>
+              <div class="col-md-8">
+                <input id="id_userName" name="userName" type="text" class="form-control" placeholder="Enter username..."/>
+              </div>
+            </div>
+
+             <div class="form-group">
+              <label for="id_email" class="col-md-4 control-label">Email:</label>
+              <div class="col-md-8">
+               <input id="id_email" name="email" class="form-control" type="text" placeholder="Enter Email..."/>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="id_password1" class="col-md-4 control-label">Password:</label>
+              <div class="col-md-8">
+               <input id="id_password1" class="form-control" name="password1" type="password" placeholder="Enter Password..."/>
+              </div>
+            </div>
         
+             <div class="form-group">
+              <label for="id_password2" class="col-md-4 control-label">Password (again):</label>
+              <div class="col-md-8">
+               <input id="id_password2" class="form-control" name="password2" type="password" placeholder="Enter Password Again..."/>
+              </div>
+            </div>
+
+               <div class="form-group">
+              <label for="id_picture" class="col-md-4 control-label">Picture:</label>
+              <div class="col-md-8">
+              <input id="id_picture" name="picture" type="file" class="form-control"/>
+              </div>
+            </div>
+          
+           <div class="form-group">
+              <label for="id_emailEvery" class="col-md-4 control-label">Notification:</label>
+              <div class="col-md-8">
+              <select class="form-control" id="id_emailEvery" name="emailEvery">
+                <option value="0">Immediate</option>
+                <option value="10">Every 10 minutes</option>
+               <option value="60">Every hour</option>
+             </select>
+              </div>
+           </div>
+           
+          
+            
+           
+          <!-- <p><label for="id_firstName">First Name:</label> <input id="id_firstName" name="firstName" type="text" placeholder="Enter First Name..."/></p>
+            
+            <p><label for="id_lastName">Last Name:</label> <input id="id_lastName" name="lastName" type="text" placeholder="Enter Last Name..."/></p>
+            <p><label for="id_userName">Username:</label> <input id="id_userName" name="userName" type="text" placeholder="Enter username..."/></p>
+            <p><label for="id_email">Email:</label> <input id="id_email" name="email" class="form-control" type="text" placeholder="Enter Email..."/></p>
+            <p><label for="id_password1">Password:</label> <input id="id_password1" class="form-control" name="password1" type="password" placeholder="Enter Password..."/></p>
+            <p><label for="id_password2">Password (again):</label> <input id="id_password2" class="form-control" name="password2" type="password"placeholder="Enter Password again..." /></p>
+            <p><label for="id_picture">Picture:</label> <input id="id_picture" name="picture" type="file" /></p>
+            <p><label for="id_emailEvery">Notification Frequency:</label> 
+            <select class="form-control" id="id_emailEvery" name="emailEvery">
+            <option value="0">Immediate</option>
+            <option value="10">Every 10 minutes</option>
+            <option value="60">Every hour</option>
+            </select></p>-->
+     
+         <input type = "submit" class="register-button" value="Register" />
         </form>
-        </center>
+         </div> <!--for the body control-->
         
+       
+         
+          
+       
+   </div>
+   </div>
+   </div>
+   </div>
+           
         
     
     {% endblock %}

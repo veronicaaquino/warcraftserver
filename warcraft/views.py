@@ -43,6 +43,7 @@ def updateScores(request, winningPlayer, losingPlayer):
     Eb = 1 / (1 + 10** ((losingPlayer.rating - winningPlayer.rating) / 400))
     winningPlayer.rating = winningPlayer.rating + k * (1 - Ea)
     losingPlayer.rating = losingPlayer.rating + k * (0 - Eb)
+
     
 def prototype_form(request):
     template = loader.get_template('warcraft/prototype_form.html')
@@ -83,18 +84,54 @@ def login(request):
             if user is not None:
                 if user.is_active:
                     user.login_web = True
+                    user.save()
                     django_login(request, user)
-                    return redirect('/accounts/loggedin')
+                    return HttpResponseRedirect('/accounts/loggedin')
                 else:
-                    message = "You are not a verified user, please check your email."
-                    return render(request, 'warcraft/invalid_login.html', {'user_name': "",'message':message})
+                    message = user.userName + ": You are not a verified user, please check your email to activate your account."
+                    form.add_error(None, message)
+                    return render_to_response('warcraft/login.html', {'form': form}, context_instance=RequestContext(request))
             else:
-                return HttpResponseRedirect('/accounts/invalid')
+                form.add_error(None, 'Sorry invalid username or password')
+                return render_to_response('warcraft/login.html', {'form': form}, context_instance=RequestContext(request))
         else:
-            print form.errors
+            return render_to_response('warcraft/login.html', {'form': form}, context_instance=RequestContext(request))
     else:
         form = AuthenticationForm()
     return render_to_response('warcraft/login.html', {'form': form,}, context_instance=RequestContext(request))
+
+def internalLogin (request):
+    if request.method == 'GET':
+        username = request.META['HTTP_USERNAME']
+        password = request.META['HTTP_PASSWORD']
+        user = auth.authenticate(username=username, password=password)
+        if user is not None:
+            if user.is_active is not False:
+                response_data =dict()
+                response_data['Status'] = 'success'
+                user.login_internal = True
+                user.save()
+                django_login(request, user)
+                online_users = User.objects.filter(login_internal=True)
+                usernames = []
+                rankings = []
+                requestedPlayer = dict()
+                requestedPlayer['ranking']  = user.ranking
+                requestedPlayer['wins'] = user.wins
+                requestedPlayer['loss'] = user.losses
+                requestedPlayer['rating'] = user.rating
+                for user in online_users:
+                    usernames.append({'userName': user.userName})
+                    rankings.append({user.userName: user.ranking})
+                
+                onlineResponse = {'player': requestedPlayer,'online': usernames, 'ranking': rankings, 'Status': 'Success'}
+                
+                return JsonResponse(onlineResponse)
+                
+            else:
+                return JsonResponse({'Status': 'Unverified'} )
+        else:
+            return JsonResponse({'Status': 'Incorrect Credentials'})
 
 '''def auth_view(request):
     username = request.POST.get('username','')
@@ -127,19 +164,15 @@ def activate(request, userName, activation_key):
         return render(request, 'warcraft/activate.html', {'message': not_found})
 
 def logout(request):
+    user = request.user
+    user.login_web = False
+    user.save()    
     django_logout(request)
-    return render_to_response('warcraft/logout.html')
+    return HttpResponseRedirect('/warcraft')
 
 def loggedin(request):
-    picture = request.user.picture
-    fname = request.user.firstName
-    lname = request.user.lastName
-    wins = request.user.get_wins
-    losses = request.user.get_losses
-    rating = request.user.get_rating
-    ranking = request.user.get_ranking
-    return render(request, 'warcraft/loggedin.html', {'full_name': fname+" "+lname, 'avatar':picture, 'wins': wins, 'losses': losses, 'rating': rating, 'ranking': ranking})
-
+    return render(request, 'warcraft/index2.html')
+    
 def invalid_login(request):
     message= "Invalid login credentials"
     emptystring=""
@@ -157,7 +190,7 @@ def edit_profile(request):
             fname = request.user.firstName
             lname = request.user.lastName
             email = request.user.email
-            return render(request, 'warcraft/edit_profile_success.html', {'full_name': fname+" "+lname, 'picture':picture, 'email':email})
+            return render(request, 'warcraft/edit_success.html', {'full_name': fname+" "+lname, 'picture':picture, 'email':email})
     else:
         form = EditProfileForm(instance=request.user)
     return render(request, 'warcraft/edit_profile.html', {'form': form})
@@ -182,8 +215,6 @@ def change_password(request,):
 def change_password_success (request):
     return render(request, 'warcraft/change_password_success.html')
     
-    
-
 def register_user(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST, request.FILES)
@@ -192,7 +223,7 @@ def register_user(request):
             link = "http://vsaquino.koding.io/accounts/activate/%s/%s/" %(user.userName, user.confirmation_key)
             picture = user.picture
             d = Context({'username':user.userName, 'link':link, 'avatar':picture}) 
-            message = "%s please visit http://vsaquino.koding.io/accounts/activate/%s/%s/ to activate your account." %(user.userName, user.userName, user.confirmation_key)
+            message = "%s please visit http://sundares.koding.io/accounts/activate/%s/%s/ to activate your account." %(user.userName, user.userName, user.confirmation_key)
             plaintext = get_template('warcraft/email.txt')
             htmly = get_template('warcraft/email.html')
             text_content = plaintext.render(d)
@@ -208,23 +239,21 @@ def register_user(request):
     return render_to_response('warcraft/register.html', {'form': form,}, context_instance=RequestContext(request))
     
 
-def register_success (reqest):
-    return render_to_response('warcraft/register_success.html')
+def register_success (request):
+    return HttpResponseRedirect('/accounts/login')
 
-def internalLogin (request):
+def internalLogout (request):
     if request.method == 'GET':
         username = request.META['HTTP_USERNAME']
-        password = request.META['HTTP_PASSWORD']
-        user = auth.authenticate(username=username, password=password)
-        if user is not None:
-            if user.is_active is not False:
-                user.login_internal = True
-                django_login(request, user)
-                return JsonResponse({'LoginStatus': 'Success'})
-            else:
-                return JsonResponse({'LoginStatus': 'Unverified'} )
+        user = User.objects.get(userName=username)
+        if user is not None and user.login_internal is True:
+            user.login_internal = False
+            user.save()
+            request.user = user
+            django_logout(request)
+            return JsonResponse({'LogOutStatus': 'Success'})
         else:
-            return JsonResponse({'LoginStatus': 'Incorrect Credentials'})
+            return JsonResponse({'LogOutStatus': 'Incorrect Credentials'})
 
 def webLoggedIn (request):
     web_users = LoggedUser.objects.all().filter(web=True)
@@ -234,6 +263,48 @@ def internalLoggedIn (request):
     internal_users = LoggedUser.objects.all().filter(internal=True)
     return render(request, 'warcraft/internal_users.html', {'users' : internal_users})
     
+def internalUpdate(request):
+    win  = request.META['HTTP_WIN']
+    lose2 = request.META['HTTP_LOSE2']
+    lose3 = request.META['HTTP_LOSE3']
+    lose4 = request.META['HTTP_LOSE4']
+    userw = User.objects.get(userName=win)
+    userl2 = User.objects.get(userName=lose2)
+    players = 2
+    if lose3 != 'NULL':
+        userl3 = User.objects.get(userName=lose3)
+        if userl3 is not None:
+            players = 3
+    if lose4 != 'NULL':
+        userl4 = User.objects.get(userName=lose4)
+        if userl4 is not None:
+            players = 4
+    if players > 3:
+        userw.beats(userl4, 2)
+        userw.beats(userl3, 2)
+        userw.beats(userl2, 2)
+        userl2.beats(userl3, players-1)
+        userl3.beats(userl4, players-2)
+    if players == 2:
+        userw.beats(userl2, 2)
+    if players == 3:
+        userw.beats(userl3, 3)
+        userl2.beats(userl3, 2)
+    response_data=dict()
+    response_data['Status'] = 'success'
+    response_data['WinRank'] = userw.ranking
+    response_data['Lose2Rank'] = userl2.ranking
+    if players > 2:
+        if userl3 is not None:
+            response_data['Lose3Rank'] = userl3.ranking
+            response_data['Lose3Rating'] = userl3.rating
+            if userl4 is not None:
+                response_data['Lose4Rank'] = userl4.ranking
+                response_data['Lose4Rating'] = userl4.rating
+    response_data['Lose2Rating'] = userl2.rating
+    response_data['WinRating'] = userw.rating
+    return JsonResponse(response_data, safe=False)
+    
 def downloads(request):
     template = loader.get_template('warcraft/downloads.html')
     return HttpResponse(template.render())
@@ -242,6 +313,7 @@ def compose_success(request):
     x = request.POST.get("recipient", "")
     send_mail('You sent mail!', 'You send a message!', 'chriscraftecs160@gmail.com', [request.user.email], fail_silently=False)
     return render(request, 'warcraft/compose_success.html', {'recipient' : x})
+    
 
 def send_something(request):
     send_something_1()

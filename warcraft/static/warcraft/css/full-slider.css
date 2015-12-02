@@ -7,8 +7,9 @@
 html,
 body {
     height: 100%;
-    font-family: 'MedievalSharp';
-    font-size: 18px;
+    font-family: 'Autopiaregular'; 
+    font-weight: normal; 
+    font-style: normal; 
 }
 
 .carousel,
@@ -26,28 +27,26 @@ body {
 .fill {
     width: 100%;
     height: 100%;
-    background-image: url("../images/home/Splash_1.png");
-    background-repeat:no-repeat;
+   /* border-style: solid;
+    border-top-width: 100px;*/
+    background-position: center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
-    background-position: center;
+    -o-background-size: cover;
+    /* margin-top: 1%; */
 }
 
 .fill2 {
-    width: 101%;
+    width: 100%;
     height: 100%;
-    background-image: url("../images/home/Splash_2.png");
-    background-repeat:no-repeat;
+    background-position: center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
-    background-position: center;
-    margin-left: -0.5%;
+    background-size: 100vw 100vh;
+    -o-background-size: cover;
 }
-
 
 /*.imgBox0 { 
     width: 151px; 
@@ -60,29 +59,32 @@ body {
 }*/
 
 .imgBox1 { 
-    width: 300px; 
-    height: 100px; 
+    width: 350px; 
+    height: 125px; 
     background-image: url("../images/home/login_button.png");
     background-repeat:no-repeat;
     position: absolute;
-    bottom: 40%;
-    left: 37%;
+    bottom: 30px;
+    left: 60px;
 }
 
 .imgBox2 { 
-    width: 300px; 
-    height: 100px; 
+    width: 350px; 
+    height: 125px; 
     background-image: url("../images/home/register_button.png");
     background-repeat:no-repeat;
     position: absolute;
-    bottom: 20%;
-    right: 37%;
+    bottom: 30px;
+    right: 50px;
 }
 
+.imgBox1:hover, .imgBox1:active{ 
+    background-image: url("../images/home/loginh_button.png");
+}
 
-/*.imgBox1:hover, .imgBox1:active{ 
-    border: solid 1px #CCC; -moz-box-shadow: 1px 1px 5px #999; -webkit-box-shadow: 1px 1px 5px #999; box-shadow: 1px 1px 5px #999;
-}*/
+.imgBox2:hover, .imgBox2:active{
+    background-image: url("../images/home/registerh_button.png");
+}
 
 footer {
     margin: 50px 0;
@@ -91,7 +93,7 @@ footer {
 .dwnld-button {
   position: absolute;
   right: 15%;
-  bottom: 20%;
+  bottom: 13%;
   left: 15%;
   z-index: 10;
   padding-top: 20px;
@@ -101,96 +103,27 @@ footer {
   text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
 }
 
-.register_button {
-  position: absolute;
-  left: 15%;
-  right: 15%;
-  bottom: 25%;
-  z-index: 10;
-  padding-top: 5%;
-  padding-bottom: 5%;
-  color: #fff;
-  text-align: center;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
-}
-
-.login_button {
-  position: absolute;
-  left: 15%;
-  right: 15%;
-  bottom:45%;
-  z-index: 10;
-  padding-top: 5%;
-  padding-bottom: 5%;
-  color: #fff;
-  text-align: center;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
-}
-
 .DLButton {
-    font-family: 'MedievalSharp';
-	background-color: #222222;
-	opacity: 0.8;
+	background-color:#131413;
 	-moz-border-radius:28px;
 	-webkit-border-radius:28px;
 	border-radius:28px;
-	border:1px solid #E8E414;
+	border:1px solid #559900;
 	display: inline-block;
 	cursor:pointer;
 	color:#ffffff;
-	font-size: 20px;
+	font-family:Arial;
+	font-size:17px;
 	padding:5px 60px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #ffffff;
+	
+	
 }
-
-.registerButton {
-    font-family: 'MedievalSharp';
-	background-color: #222222;
-    opacity: 0.8;
-	-moz-border-radius:28px;
-	-webkit-border-radius:28px;
-	border-radius:28px;
-	border:1px solid #E8E414;
-	display: inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-size: 20px;
-	padding:1% 10%;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #ffffff;
+.DLButton:hover {
+	background-color:#559900;
 }
-
-.loginButton {
-    font-family: 'MedievalSharp';
-	background-color: #222222;
-	opacity: 0.8;
-	-moz-border-radius:28px;
-	-webkit-border-radius:28px;
-	border-radius:28px;
-	border:1px solid #E8E414;
-	display: inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-size: 20px;
-	padding:1% 12%;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #ffffff;
-}
-
-
-
-.DLButton:hover,
-.loginButton:hover,
-.registerButton:hover {
-	background-color: #E8E414;
-	text-decoration: none;
-}
-
-.DLButton:active,
-.loginButton:active,
-.registerButton:active {
+.DLButton:active {
 	position:relative;
-	text-decoration: none;
 	top:1px;
 }

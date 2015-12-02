@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>{% block title %}Warcraft Discussion{% endblock %}</title>
+    <!-- <meta http-equiv="refresh" content="2">  -->
+
+
+    <style type="text/css">
+        * {
+            color: white;
+            //color: #444;
+            font-size: 0.95em;
+            //background: orange;
+
+        }
+        body{
+          //background-image: url("/static/warcraft/images/Splash.png");
+          background-image: url("/static/warcraft/images/forum-background.jpg");
+          //background: black;
+        }
+
+        #menu a {
+            text-decoration: none;
+            padding-right: 3px;
+            padding-left: 3px;
+            //color: white;
+            //color: #444;
+            font-size: 0.9em;
+            font-family: Ubuntu;
+
+        }
+
+        a:hover {
+            border-top: 1px solid #aaa;
+            border-bottom: 1px solid #aaa;
+            color: #ccc;
+
+        }
+
+        #container { margin: auto; width: 800px; border: 0px solid;
+         //background-color: black;
+         //opacity: 0.9;
+         background-color:rgba(0, 0, 0, 0.4);
+         //background-color: white;
+         padding: 20px;
+         font-size: 18px;
+        }
+
+        p { font-size: 15px; }
+        h3 {font-size:28px; margin-right: 30px; display: inline; font-family: Ubuntu;}
+    </style>
+
+</head>
+
+<body>
+    <div id="sidebar"> {% block sidebar %} {% endblock %} </div>
+    <div id="container">
+        <div id="menu">
+            {% block nav-global %}
+
+                <!-- MENU -->
+               <a href="/forum/"><center><b> <h3>Warcraft Discussion</a></h3> </b></center></a>
+
+                <a href="/">home</a> |
+
+                {% if user.is_staff %} <a href="{% url 'admin:index' %}">Admin</a> {% endif %}
+
+
+
+                {% if not user.is_authenticated %}<a href="/accounts/login/?next=/forum/">login</a> | <a
+                    href="/accounts/register/">register</a>{% endif %}
+
+                {% if user.is_authenticated %}<a href="/accounts/logout/?next=/forum/">logout</a>
+                    {% endif %}
+
+            {% endblock %}
+        </div>
+
+        <div id="content">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+
+</body>
+</html>

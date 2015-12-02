@@ -1,0 +1,48 @@
+{% extends "fbase.html" %}
+
+{% block sidebar %} <style type="text/css"> </style> {% endblock %}
+
+{% block content %}
+    <style type="text/css">
+        .main { margin-left: 25px; margin-top: 30px; }
+        .last { border: 0px; }
+
+        input_m{
+          //background: black;
+          //background-color:rgba(0, 0, 0, 0.4);
+          //background: linear-gradient(to bottom, #e05d22 0%, #d94412 100%);
+          color: white;
+        }
+
+        #reply { //background: black;
+          background-color:rgba(0, 0, 0, 0.4);
+           margin-top: 10px; width: 500px; }
+        #body { //background: black;
+          background-color:rgba(0, 0, 0, 0.4); width: 500px; height: 250px; font-size: 1.3em; }
+        #submit {//background-color:rgba(0, 0, 0, 0.4);
+          background: linear-gradient(to bottom, #e05d22 0%, #d94412 100%);
+           float: right; }
+        #rtitle {
+            //background: #eee;
+
+            font-size: 1.3em; padding: 3px; margin-top: 40px;
+            padding-left: 20px; margin-bottom: -10px;
+        }
+    </style>
+
+    <div class="main">
+        <div id="reply">
+            <div id="rtitle">{{ title }}</div><br />
+
+            <form action="{{ action }}" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+                <input_m>Subject: <input type="text" style="background-color:rgba(0, 0, 0, 0.4);" name="subject" size="60" value="{{ subject }}" /><br />
+                <textarea name="body" id="body"></textarea><br />
+                <!---<input type="text" name="body" id="body" value=""><br/>--->
+                  <input id="picutre" name="picture" type="file"/>
+                <input type="submit" value="Submit" id="submit" /></input_m>
+            </form>
+
+        </div>
+    </div>
+
+{% endblock %}

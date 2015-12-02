@@ -14,22 +14,35 @@
 /*@font-face { font-family: Lifecraft; src: url('LifeCraft_Font.ttf'); }*/ 
 
 body {
-  
+  text-align:center;
   font-family: 'MedievalSharp';
   font-style: normal;
   text-align: center;
-  background-image: url("../images/register_bg.jpg");
-  background-repeat: no-repeat;
-  background-position: center;
-  -webkit-background-size: 100%; 
-  -moz-background-size: 100%; 
-  -o-background-size: 100%; 
-  background-size: 100%; 
-  -webkit-background-size: cover; 
-  -moz-background-size: cover; 
-  -o-background-size: cover; 
-  background-size: cover; 
-  margin-top: 1%;
+  color: #404040;
+  background: #0A0A0A;
+  background-color: #000000;
+  background-image: url("../images/new_register.jpg");
+  background-repeat: repeat;
+  background-size: cover;
+  margin:auto;
+}
+
+.box1{
+    
+    float: center;
+    width: 40%;
+    display: inline-block;
+    margin: 3% auto;
+    margin-left: 10%;
+    margin-right: 10%;
+    
+    
+}
+
+#wrapper{
+   width:960px;
+   margin:0 auto;
+   text-align:left;
 }
 
 .register-title {
@@ -52,9 +65,9 @@ body {
 }
 
 .register {
-  margin: 0 auto 0;
-  width: 350px;
-  padding: 2%;
+  margin: 0 auto;
+  width: 30%;
+  padding: 40px;
   background: #f4f4f4;
   border-radius: 8px;
   @include box-shadow(0 0 1px 1px rgba(black, .1),
@@ -96,7 +109,7 @@ input {
   text-align: center;
   text-shadow: 0 1px rgba(white, .5);
   /*background: #fcfcfc*/;
-  background: #800000;
+  background: #5BB85D;
   border: 1px solid;
   border-color: #d8d8d8 #d1d1d1 #c3c3c3;
   border-radius: 2px;
@@ -106,7 +119,7 @@ input {
                       0 1px rgba(black, .04));
 
   &:active {
-    background: #800000;
+    background: #DD8705;
     border-color: #c3c3c3 #d1d1d1 #d8d8d8;
     @include linear-gradient(top, #eee, #fcfcfc);
     @include box-shadow(inset 0 1px rgba(black, .03));
@@ -168,7 +181,3 @@ input {
     position: absolute;
 }
 
-.fstyle{
-    font-family: 'MedievalSharp';
-    font-style: normal;
-}
